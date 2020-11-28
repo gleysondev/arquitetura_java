@@ -10,8 +10,20 @@
   	<description></description>
   	<servlet-class>aulas.servlet.PrimeiraServlet</servlet-class>
   </servlet>
+   <servlet>
+  	<servlet-name>CadastroServlet</servlet-name>
+  	<display-name>CadastroServlet</display-name>
+  	<description></description>
+  	<servlet-class>aulas.servlet.CadastroServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>PrimeiraServlet</servlet-name>
   	<url-pattern>/PrimeiraServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CadastroServlet</servlet-name>
+  	<url-pattern>/CadastroServlet</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
