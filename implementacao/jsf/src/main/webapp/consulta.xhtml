@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Consulta de Oficiais</title>
+</h:head>
+<h:body>
+	<h2>Consulta de Oficiais</h2>
+	<h:dataTable value="#{cadastroBean.lista}" var="i">
+
+		<h:column>
+			<f:facet name="header">Nome</f:facet>    				
+      #{i.nome}
+   </h:column>
+
+		<h:column>
+			<f:facet name="header">Posto</f:facet>
+      #{i.posto}
+       </h:column>
+	</h:dataTable>
+	<h:form>
+		<!-- COMENTAR E VER NO QUE ACONTECER -->
+		<h:commandButton value="Voltar" action="#{cadastroBean.voltar}"></h:commandButton>
+	</h:form>
+	
+	<p:dataTable value="#{cadastroBean.lista}" var="i" paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="3,6,15" rows="3">
+    <p:column headerText="Id">
+        <h:outputText value="#{i.id}" />
+    </p:column>
+ 
+    <p:column headerText="Nome" sortBy="#{i.nome}">
+        <h:outputText value="#{i.nome}" />
+    </p:column>
+ 
+    <p:column headerText="Posto">
+        <h:outputText value="#{i.posto}" />
+    </p:column>
+ 
+</p:dataTable>
+	
+	
+</h:body>
+</html>

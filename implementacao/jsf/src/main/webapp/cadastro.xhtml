@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	
+	>
+
+<h:head>
+	<title>Cadastro de Oficiais</title>
+</h:head>
+<h:body>
+	<h2>Cadastro de Oficiais</h2>
+	<h:form>
+		<h:messages />
+		<h:inputText value="#{cadastroBean.nome}"></h:inputText>
+		<h:selectOneMenu value="#{cadastroBean.posto}">
+			<f:selectItem itemValue="Marechal do Ar" itemLabel="Marechal do Ar" />
+			<f:selectItem itemValue="Tenente-Brigadeiro do Ar" itemLabel="Tenente-Brigadeiro do Ar" />
+			<f:selectItem itemValue="Major-Brigadeiro" itemLabel="Major-Brigadeiro" />
+		</h:selectOneMenu>
+		<h:commandButton value="Cadastrar" actionListener="#{cadastroBean.cadastrar}"></h:commandButton>
+		<h:commandButton value="Consultar" action="#{cadastroBean.consultar}"></h:commandButton>
+		
+		
+		
+		
+	</h:form>
+	<h:form>
+		<p:growl id="growl" life="2000" />
+		<p:messages id="msg"/>
+		<p:inputText value="#{cadastroBean.nome}"/>
+		<p:selectOneMenu value="#{cadastroBean.posto}">
+			<f:selectItem itemValue="Marechal do Ar" itemLabel="Marechal do Ar" />
+			<f:selectItem itemValue="Tenente-Brigadeiro do Ar" itemLabel="Tenente-Brigadeiro do Ar" />
+			<f:selectItem itemValue="Major-Brigadeiro" itemLabel="Major-Brigadeiro" />
+		</p:selectOneMenu>
+		<p:commandButton value="Cadastrar" update="growl,msg" actionListener="#{cadastroBean.cadastrar}"/>
+	</h:form>
+</h:body>
+</html>
