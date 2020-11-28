@@ -22,21 +22,21 @@ public class OficialResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Oficial> get() {
+    public List<Oficial> list() {
         return repository.getAll();
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Oficial getById(@PathParam("id") int id) {
+    public Oficial get(@PathParam("id") int id) {
         return repository.get(id);
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response post(Oficial ofical)
+    public Response add(Oficial ofical)
     {
         try{
             repository.add(ofical);
@@ -52,7 +52,7 @@ public class OficialResource {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response put(@PathParam("id") int id, Oficial ofical)
+    public Response edit(@PathParam("id") int id, Oficial ofical)
     {
         Oficial p = repository.get(id);
         if(p == null)
