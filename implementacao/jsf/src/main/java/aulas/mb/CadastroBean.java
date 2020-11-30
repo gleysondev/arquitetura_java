@@ -3,6 +3,7 @@ package aulas.mb;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -11,18 +12,23 @@ import javax.faces.event.ActionEvent;
 
 import aulas.model.Oficial;
 import aulas.respository.OficialRepository;
+import aulas.respository.OficialRepositoryJpa;
 
 @ManagedBean
 //@ViewScoped
 @SessionScoped
-
 public class CadastroBean {
 	private OficialRepository repository = new OficialRepository();
+	private OficialRepositoryJpa repositoryJpa = new OficialRepositoryJpa();
 	private String nome;
 	private String posto;
 	
 	private List<Oficial> lista = new ArrayList<Oficial>();
 	
+	@PostConstruct
+	public void initDs() {
+		repositoryJpa.criarConexao();
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -39,8 +45,8 @@ public class CadastroBean {
 	   Oficial oficial = new Oficial();
 	   oficial.setNome(nome);
 	   oficial.setPosto(posto);
-	   repository.add(oficial);
-	   
+	   //repository.add(oficial);
+	   repositoryJpa.add(oficial);
 	   nome=null;
 	   posto=null;
 	   
@@ -50,7 +56,8 @@ public class CadastroBean {
 	}
 	public String consultar() {
 		System.out.println("Realizando alguma ação");
-		lista= repository.getAll();
+		//lista= repository.getAll();
+		lista= repositoryJpa.getAll();
 		return "consulta";
 	}
 	public String voltar() {

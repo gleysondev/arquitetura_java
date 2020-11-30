@@ -6,6 +6,7 @@ import java.util.List;
 
 import aulas.model.Oficial;
 
+//http://www.ciceroednilson.com.br/configurando-data-source-no-wildfly-9-com-mysql/
 public class OficialRepository {
 	
 	private final static HashMap<Integer, Oficial> Oficials = new HashMap<>();
