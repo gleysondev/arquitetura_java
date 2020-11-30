@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 
 import aulas.model.Oficial;
 import aulas.respository.OficialRepository;
@@ -19,7 +20,8 @@ import aulas.respository.OficialRepositoryJpa;
 @SessionScoped
 public class CadastroBean {
 	private OficialRepository repository = new OficialRepository();
-	private OficialRepositoryJpa repositoryJpa = new OficialRepositoryJpa();
+	@Inject
+	private OficialRepositoryJpa repositoryJpa;
 	private String nome;
 	private String posto;
 	
@@ -27,7 +29,7 @@ public class CadastroBean {
 	
 	@PostConstruct
 	public void initDs() {
-		repositoryJpa.criarConexao();
+		//repositoryJpa.criarConexao();
 	}
 	public String getNome() {
 		return nome;
