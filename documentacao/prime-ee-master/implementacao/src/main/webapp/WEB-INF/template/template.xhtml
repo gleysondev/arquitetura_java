@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" />
+	<title>JSF</title>
+	<h:outputScript library="static" name="js/jquery.min.js"></h:outputScript>
+	<h:outputStylesheet library="static" name="css/bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="static" name="css/style.css"></h:outputStylesheet>
+	<h:outputScript library="static" name="js/bootstrap.min.js"></h:outputScript>
+	<h:outputScript library="static" name="js/jquery.mask.min.js"></h:outputScript>
+	<!-- https://igorescobar.github.io/jQuery-Mask-Plugin/ 
+		https://v4-alpha.getbootstrap.com/migration/
+		https://www.mkyong.com/jsf2/customize-validation-error-message-in-jsf-2-0/
+	-->
+	<h:outputScript target="head">
+		$(document).ready(function(){
+		  $('.data').mask('00/00/0000');
+		  $('.hora').mask('00:00:00');
+		  $('.date_time').mask('00/00/0000 00:00:00');
+		  $('.periodo').mask('0000-00');
+		  $('.cep').mask('00000-000');
+		  $('.celular').mask("#0000-0000", {reverse: true});
+		  $('.telefone').mask('(00) 0000-0000');
+		  $('.phone_with_ddd').mask('(00) 0000-0000');
+		  $('.phone_us').mask('(000) 000-0000');
+		  $('.mixed').mask('AAA 000-S0S');
+		  $('.cpf').mask('000.000.000-00', {reverse: true});
+		  $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+		  $('.moeda').mask("#.##0,00", {reverse: true});
+		  $('.cel').mask('00 Z0000-0000', {
+		    translation: {
+		      'Z': {
+		        pattern: /[0-9]/, optional: true
+		      }
+		    }
+		  });
+		  $('.ip_address').mask('099.099.099.099');
+		  $('.percent').mask('##0,00%', {reverse: true});
+		  $('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
+		  $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
+		  $('.fallback').mask("00r00r0000", {
+		      translation: {
+		        'r': {
+		          pattern: /[\/]/,
+		          fallback: '/'
+		        },
+		        placeholder: "__/__/____"
+		      }
+		    });
+		  $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
+		});
+	</h:outputScript>
+</h:head>
+<h:body>
+	<ui:include src="./topmenu.xhtml" />
+	<div class="container content-space">
+		<ui:insert name="conteudo" />
+	</div>
+</h:body>
+</html>

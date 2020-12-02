@@ -1,0 +1,136 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="conteudo">
+		<div class="">
+			<div class="card-header">Jovem Aprendiz</div>
+			<div class="card-block">
+				<h:form id="form">
+				<h:messages id="msg" globalOnly="true" layout="list"  showSummary="true" showDetail="true" infoClass="alert alert-info" warnClass="alert alert-warning" errorClass="alert alert-danger"  />
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="nome">#{msg['nome']}</label>
+							<!-- requiredMessage="#{msg['campo.obrigatorio']}"  -->
+							<h:inputText value="#{validacaoLocalMB.nome}" id="nome"
+								styleClass="form-control form-control-sm" required="true">
+								<f:validateLength minimum="1" maximum="10"></f:validateLength>
+							</h:inputText>
+							<h:message for="nome" style="color:red;"></h:message>
+
+						</div>
+						<div class="form-group col-md-4">
+							<label for="email">E-mail</label>
+							<h:inputText value="#{validacaoLocalMB.email}" id="email" styleClass="form-control form-control-sm" required="false">
+								<f:validator validatorId="EmailValidator"></f:validator>
+							</h:inputText>
+							<h:message for="email" style="color:red;"></h:message>
+						</div>
+						
+						<div class="form-group col-md-2">
+							<label for="cpf">CPF</label>
+							<h:inputText value="#{validacaoLocalMB.cpf}" id="cpf"
+								styleClass="form-control form-control-sm cpf" required="false" />
+						</div>
+
+						<div class="form-group col-md-2">
+							<label for="data">Nascido em:</label>
+							<h:inputText value="#{validacaoLocalMB.nascimento}"
+								styleClass="form-control form-control-sm data" id="data"
+								required="false">
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
+							</h:inputText>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<label for="idade">#{msg['idade']}</label>
+							<h:inputText value="#{validacaoLocalMB.idade}" id="idade"
+								styleClass="form-control form-control-sm" required="false">
+							</h:inputText>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="sexo">Sexo:</label>
+							<h:selectOneMenu id="sexo"
+								styleClass="form-control form-control-sm" value="#{validacaoLocalMB.sexo}"
+								required="false">
+								<f:selectItem itemValue="M" itemLabel="MASCULINO" />
+								<f:selectItem itemValue="F" itemLabel="FEMININO" />
+							</h:selectOneMenu>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="escolaridade">Escolaridade:</label>
+							<h:selectOneMenu id="escolaridade"
+								styleClass="form-control form-control-sm"
+								value="#{validacaoLocalMB.escolaridade}" required="false">
+								<f:selectItem itemValue="M" itemLabel="MEDIO" />
+								<f:selectItem itemValue="F" itemLabel="FUNDAMENTAL" />
+							</h:selectOneMenu>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="priemprego">Primeiro Emprego ?</label>
+							<h:selectOneMenu id="priemprego"
+								styleClass="form-control form-control-sm"
+								value="#{validacaoLocalMB.primeiroEmprego}" required="false">
+								<f:selectItem itemValue="S" itemLabel="SIM" />
+								<f:selectItem itemValue="N" itemLabel="NÃO" />
+							</h:selectOneMenu>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="salario">Pretensão Salarial</label>
+							<h:inputText value="#{validacaoLocalMB.pretensaoSalarial}" id="salario"
+								styleClass="form-control form-control-sm moeda" required="false">
+							</h:inputText>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<label for="telefone">#{msg['telefone']}</label>
+							<h:inputText type="text" class="form-control form-control-sm telefone"
+								id="telefone" value="#{validacaoLocalMB.telefone}" required="false" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="cidade">Cidade</label>
+							<h:inputText type="text" class="form-control form-control-sm"
+								id="cidade" value="#{validacaoLocalMB.cidade}" required="false" />
+						</div>
+
+						<div class="form-group col-md-4">
+							<label for="estado">Estado</label>
+							<h:selectOneMenu id="estado"
+								styleClass="form-control form-control-sm" value="#{validacaoLocalMB.estado}"
+								required="false">
+								<f:selectItem itemValue="" itemLabel="" />
+								<f:selectItem itemValue="SP" itemLabel="SAO PAULO" />
+								<f:selectItem itemValue="RJ" itemLabel="RIO DE JANEIRO" />
+								<f:selectItem itemValue="MA" itemLabel="MARANHÃO" />
+								<f:selectItem itemValue="PI" itemLabel="PIAUI" />
+							</h:selectOneMenu>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="cep">Cep</label>
+							<h:inputText type="text" class="form-control form-control-sm cep"
+								id="cep" value="#{validacaoLocalMB.cep}" required="false">
+								<!-- 
+						<f:converter converterId="CepConverter" />
+						 -->
+							</h:inputText>
+						</div>
+					</div>
+					<h:commandButton styleClass="btn btn-space"
+						value="Default" actionListener="#{validacaoLocalMB.valorPadrao}" immediate="true" />
+					<h:commandButton styleClass="btn btn-primary btn-space"
+						value="Salvar" actionListener="#{validacaoLocalMB.salvar}">
+						
+					</h:commandButton>
+						
+						
+					<h:commandButton styleClass="btn btn-warning btn-space" value="Voltar"
+						action="#{validacaoLocalMB.limpar}" />
+					<h:commandButton styleClass="btn btn-danger" value="Voltar"
+						action="#{validacaoLocalMB.direciona}" />
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

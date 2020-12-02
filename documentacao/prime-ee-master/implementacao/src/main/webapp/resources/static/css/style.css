@@ -1,0 +1,10 @@
+.btn-space {
+    margin-right: 5px;
+}
+.content-space {
+    margin-top: 20px;
+}
+form > ul {
+  list-style-type: none !important;
+  margin-left: -40px !important;
+}

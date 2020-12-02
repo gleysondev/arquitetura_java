@@ -1,0 +1,118 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="conteudo">
+	<h:outputScript>
+		//VALIDACAO DO FORMULARIO VIA JQUERY
+		function validarForm() {
+			var texto = document.getElementById("form:texto");
+			if(texto.value != 'GLEYSON'){
+				alert(texto.value + 'Não é valor válido');
+				return;
+			}
+			alert('Bem-Vindo ' + texto.value );
+		}
+	</h:outputScript>
+		<div class="jumbotron">
+			<h1>
+				<h:outputText value="#{msg['componentes']}" />
+			</h1>
+			<p>Conhecendo os componentes JSF</p>
+		</div>
+		
+		<h:form id="form" onsubmit="return validarForm()">
+			<h:panelGrid columns="3">
+				<h:outputText value="#{msg['linguagem']}" />
+				<h:selectOneMenu value="#{i18nBean.locale}" onchange="submit()"
+					valueChangeListener="#{i18nBean.localeChanged}">
+					<f:selectItems value="#{i18nBean.countries}" />
+				</h:selectOneMenu>
+				<h:commandButton value="Validar" action="componentes"></h:commandButton>
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg['link']}" />
+				<h:link value="Pagina com Bootstrap" outcome="bootstrap" />
+				
+				<h:outputText value="#{msg['caixa.texto']}" />
+				<h:inputText id="texto" />
+				
+				<h:outputText value="Campo Mask" />
+				<h:inputText id="data" styleClass="time" />
+				
+				<h:outputText value="#{msg['caixa.senha']}" />
+				<h:inputSecret />
+				<h:outputText value="#{msg['caixa.selecao']}" />
+				<h:selectOneMenu>
+					<f:selectItem itemValue="W" itemLabel="#{msg['warn']}" />
+					<f:selectItem itemValue="I" itemLabel="#{msg['info']}" />
+					<f:selectItem itemValue="S" itemLabel="#{msg['success']}" />
+					<f:selectItem itemValue="D" itemLabel="#{msg['danger']}" />
+				</h:selectOneMenu>
+				<h:outputText value="#{msg['caixa.check']}" />
+				<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
+				<h:outputText value="#{msg['caixa.check.multiplo']}" />
+				<h:selectManyCheckbox>
+					<f:selectItem itemValue="W" itemLabel="#{msg['warn']}" />
+					<f:selectItem itemValue="I" itemLabel="#{msg['info']}" />
+					<f:selectItem itemValue="S" itemLabel="#{msg['success']}" />
+					<f:selectItem itemValue="D" itemLabel="#{msg['danger']}" />
+				</h:selectManyCheckbox>
+				<h:outputText value="#{msg['caixa.opcao']}" />
+				<h:selectOneRadio>
+					<f:selectItem itemValue="W" itemLabel="Warn" />
+					<f:selectItem itemValue="I" itemLabel="Info" />
+					<f:selectItem itemValue="S" itemLabel="Success" />
+					<f:selectItem itemValue="D" itemLabel="Danger" />
+				</h:selectOneRadio>
+				<h:outputText value="#{msg['lista']}" />
+				<h:selectOneListbox>
+					<f:selectItem itemValue="W" itemLabel="Warn" />
+					<f:selectItem itemValue="I" itemLabel="Info" />
+					<f:selectItem itemValue="S" itemLabel="Success" />
+					<f:selectItem itemValue="D" itemLabel="Danger" />
+				</h:selectOneListbox>
+				<h:outputText value="#{msg['lista.multipla']}" />
+				<h:selectManyListbox>
+					<f:selectItem itemValue="W" itemLabel="Warn" />
+					<f:selectItem itemValue="I" itemLabel="Info" />
+					<f:selectItem itemValue="S" itemLabel="Success" />
+					<f:selectItem itemValue="D" itemLabel="Danger" />
+				</h:selectManyListbox>
+				
+				<h:outputText value="#{msg['texto.area']}" />
+				<h:inputTextarea row="10" col="10" value="Ola Mundo!" />
+				<h:outputText value="#{msg['rotulo']}" />
+				<h:outputText value="Rotulo" />
+				<h:outputText value="#{msg['rotulo.formato']}" />
+				<h:outputFormat
+					value="Alerta : {0}, Informacao : {1}, Sucesso : {2}, Erro : {3}">
+					<f:param value="Warn" />
+					<f:param value="Info" />
+					<f:param value="Success" />
+					<f:param value="Erro" />
+				</h:outputFormat>
+				<h:outputText value="#{msg['imagem']} WEB" />
+				<h:graphicImage
+					value="http://www.tutorialspoint.com/images/jsf-mini-logo.png"
+					width="100" height="100" />
+				<h:outputText value="#{msg['imagem']} Local" />
+				<h:graphicImage library="static" name="img/porgamador.jpg" width="100" height="100" />
+
+				<h:outputText value="#{msg['botao']}" />
+				<h:commandButton id="botao" value="Botao" styleClass="btn btn-info"></h:commandButton>
+
+				<h:outputText value="#{msg['botao.link']}" />
+				<h:outputText value="#{msg['rotulo.link']}" />
+
+				<h:outputText value="#{msg['painel.grid']}" />
+				<h:outputText value="#{msg['mensagem']}" />
+				<h:outputText value="#{msg['mensagens']}" />
+				<h:outputText value="#{msg['param']}" />
+				<h:outputText value="#{msg['atributo']}" />
+				<h:outputText value="#{msg['propriedade.acao']}" />
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

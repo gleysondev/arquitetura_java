@@ -1,0 +1,68 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="conteudo">
+		<div class="">
+  		<div class="card-header">Formulário Cliente</div>
+  		<div class="card-block">
+  		<h:form id="form">
+  			<h:messages id="msg" showSummary="true" showDetail="true" infoClass="alert alert-info" warnClass="alert alert-warning" errorClass="alert alert-danger"  />
+			<div class="form-row">
+				<div class="form-group col-md-10">
+					<label for="Nome">Nome</label>
+					<h:inputText value="#{clienteMB.nome}"  id="Nome"  styleClass="form-control" />
+				</div>
+				<div class="form-group col-md-2">
+					<label for="Credito">Crédito</label>
+					<h:inputText value="#{clienteMB.credito}" styleClass="form-control moeda" id="Credito">
+						
+					</h:inputText>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Endereco">Endereço</label> <h:inputText value="#{clienteMB.endereco}" type="text" class="form-control" id="Endereco" />
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-7">
+					<label for="Bairro">Bairro</label>
+					<h:inputText type="text" value="#{clienteMB.bairro}" class="form-control" id="Bairro" />
+				</div>
+				<div class="form-group col-md-1">
+					<label for="Numero">Número</label>
+					<h:inputText type="text" class="form-control" id="Numero" value="#{clienteMB.numero}"  />
+				</div>
+				<div class="form-group col-md-4">
+					<label for="Complemento">Complemento</label>
+					<h:inputText type="text" class="form-control" id="Complemento" value="#{clienteMB.complemento}"/>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="Cidade">Cidade</label> <h:inputText type="text" class="form-control" id="Cidade" value="#{clienteMB.cidade}" />
+				</div>
+				<div class="form-group col-md-4">
+					<label for="Estado">Estado</label>
+					<h:selectOneMenu id="Estado" styleClass="form-control" value="#{clienteMB.estado}">
+						<f:selectItem itemValue="SP" itemLabel="SAO PAULO" />
+						<f:selectItem itemValue="RJ" itemLabel="RIO DE JANEIRO" />
+						<f:selectItem itemValue="MA" itemLabel="MARANHÃO" />
+						<f:selectItem itemValue="PI" itemLabel="PIAUI" />
+					</h:selectOneMenu>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="Cep">Cep</label> 
+					<h:inputText type="text" class="form-control cep" id="Cep" value="#{clienteMB.cep}">
+						<!-- 
+						<f:converter converterId="CepConverter" />
+						 -->
+					</h:inputText>
+				</div>
+			</div>
+			<h:commandButton styleClass="btn btn-primary btn-space" value="Salvar" actionListener="#{clienteMB.salvar}" />
+			<h:commandButton styleClass="btn btn-danger" value="Voltar" action="#{clienteMB.direciona}" />
+		</h:form>
+  		</div>
+		</div>
+	</ui:define>
+</ui:composition>
