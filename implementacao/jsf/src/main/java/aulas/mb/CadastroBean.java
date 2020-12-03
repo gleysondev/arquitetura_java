@@ -10,18 +10,22 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import aulas.model.Oficial;
-import aulas.respository.OficialRepository;
-import aulas.respository.OficialRepositoryJpa;
+import aulas.respository.OficialRepositoryOld;
+import external.OficialRepository;
 
 @ManagedBean
 //@ViewScoped
 @SessionScoped
 public class CadastroBean {
-	private OficialRepository repository = new OficialRepository();
+	private OficialRepositoryOld repository = new OficialRepositoryOld();
+	
 	@Inject
-	private OficialRepositoryJpa repositoryJpa;
+	@Named(value="jpa2")
+	private OficialRepository repositoryJpa;
+	
 	private String nome;
 	private String posto;
 	
@@ -57,7 +61,7 @@ public class CadastroBean {
 	   
 	}
 	public String consultar() {
-		System.out.println("Realizando alguma ação");
+		System.out.println("Realizando alguma aï¿½ï¿½o");
 		//lista= repository.getAll();
 		lista= repositoryJpa.getAll();
 		return "consulta";
