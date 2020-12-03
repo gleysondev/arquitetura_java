@@ -39,3 +39,4 @@ src-cordova/
 overrides/
 packages/
 
+/implementacao/concurrency/concurrency/nbproject/private/
