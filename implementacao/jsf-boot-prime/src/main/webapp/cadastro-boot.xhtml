@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="conteudo">
+		<div class="">
+			<div class="card-header">Cadastro Bootstrap</div>
+			<div class="card-block">
+				<h:form id="form">
+					<h:messages />
+					<div class="form-row">
+						<div class="form-group col-md-7">
+							<h:inputText value="#{cadastroBean.oficial.nome}"
+								class="form-control"></h:inputText>
+						</div>
+						<div class="form-group col-md-5">
+							<h:selectOneMenu value="#{cadastroBean.oficial.posto}"
+								styleClass="form-control">
+								<f:selectItem itemValue="Marechal do Ar"
+									itemLabel="Marechal do Ar" />
+								<f:selectItem itemValue="Tenente-Brigadeiro do Ar"
+									itemLabel="Tenente-Brigadeiro do Ar" />
+								<f:selectItem itemValue="Major-Brigadeiro"
+									itemLabel="Major-Brigadeiro" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<h:inputText
+								class="form-control"></h:inputText>
+						</div>
+					</div>
+
+					<h:commandButton value="Cadastrar"
+						actionListener="#{cadastroBean.cadastrar}" styleClass="btn btn-primary btn-space"></h:commandButton>
+					<h:commandButton value="Consultar"
+						action="#{cadastroBean.consultar}" styleClass="btn btn-danger"></h:commandButton>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

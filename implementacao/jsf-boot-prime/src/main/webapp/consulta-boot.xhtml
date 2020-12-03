@@ -1,0 +1,30 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="conteudo">
+		<div class="">
+			<div class="card-header">Consulta Bootstrap</div>
+			<div class="card-block">
+				<h:form>
+					<h:commandButton value="Pesquisar" styleClass="btn btn-info btn-space" actionListener="#{cadastroBean.pesquisar}"></h:commandButton>
+	
+				</h:form>
+				<h:dataTable value="#{cadastroBean.lista}" var="i" class="table">
+
+					<h:column>
+						<f:facet name="header">Nome</f:facet>    				
+				    #{i.nome}
+				 </h:column>
+				
+							<h:column>
+								<f:facet name="header">Posto</f:facet>
+				    #{i.posto}
+				     </h:column>
+				</h:dataTable>
+				
+
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

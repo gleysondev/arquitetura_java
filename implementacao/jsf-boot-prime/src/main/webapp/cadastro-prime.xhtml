@@ -1,0 +1,26 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="conteudo">
+		<h:form >
+					<h:messages />
+						<p:inputText value="#{cadastroBean.oficial.nome}"></p:inputText>
+						<p:selectOneMenu value="#{cadastroBean.oficial.posto}">
+								<f:selectItem itemValue="Marechal do Ar"
+									itemLabel="Marechal do Ar" />
+								<f:selectItem itemValue="Tenente-Brigadeiro do Ar"
+									itemLabel="Tenente-Brigadeiro do Ar" />
+								<f:selectItem itemValue="Major-Brigadeiro"
+									itemLabel="Major-Brigadeiro" />
+							</p:selectOneMenu>
+					
+
+					<p:commandButton value="Cadastrar"
+						actionListener="#{cadastroBean.cadastrar}"></p:commandButton>
+					<p:commandButton value="Consultar"
+						action="#{cadastroBean.consultar}" ></p:commandButton>
+				</h:form>
+	</ui:define>
+</ui:composition>

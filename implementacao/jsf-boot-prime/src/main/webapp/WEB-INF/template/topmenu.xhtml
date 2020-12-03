@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">FAB - Java EE</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><h:link styleClass="nav-link"
+						value="Cadastro" outcome="cadastro-boot" /></li>
+				<li class="nav-item"><h:link styleClass="nav-link"
+						value="Consulta" outcome="consulta-boot" /></li>
+				<li class="nav-item"><a class="nav-link"
+					href="https://www.devmedia.com.br/facelets-visao-geral-conceitos-utilizacao-e-criacao-de-componentes/14068">Facelets</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Managed
+						Bean</a></li>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Escopo </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Request</a> <a
+							class="dropdown-item" href="#">View</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Mais Escopos</a>
+					</div></li>
+				<li class="nav-item"><h:link styleClass="nav-link"
+						value="Converters" outcome="tipoDado" /></li>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Prime </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item"><h:link styleClass="nav-link"
+								value="Cadastro" outcome="cadastro-prime" /></a>
+						<a class="dropdown-item"><h:link styleClass="nav-link"
+						value="Consulta" outcome="consulta-prime" /></a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+</ui:composition>

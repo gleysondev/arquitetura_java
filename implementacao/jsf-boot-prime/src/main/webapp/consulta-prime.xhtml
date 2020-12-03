@@ -1,0 +1,37 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="conteudo">
+		<div class="">
+			<div class="card-header">Consulta Bootstrap</div>
+			<div class="card-block">
+				<h:form>
+					<h:commandButton value="Pesquisar"
+						styleClass="btn btn-info btn-space"
+						actionListener="#{cadastroBean.pesquisar}"></h:commandButton>
+
+				</h:form>
+				<p:dataTable value="#{cadastroBean.lista}" var="i" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+					rowsPerPageTemplate="5,10,15" rows="5">
+					<p:column headerText="Id">
+						<h:outputText value="#{i.id}" />
+					</p:column>
+
+					<p:column headerText="Nome" sortBy="#{i.nome}">
+						<h:outputText value="#{i.nome}" />
+					</p:column>
+
+					<p:column headerText="Posto">
+						<h:outputText value="#{i.posto}" />
+					</p:column>
+
+				</p:dataTable>
+
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
