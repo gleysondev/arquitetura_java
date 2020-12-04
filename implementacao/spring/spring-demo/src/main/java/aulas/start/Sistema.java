@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import aulas.componente.Mensagem;
-import aulas.oficial.Oficial;
+import aulas.model.Oficial;
 
 @Component
 public class Sistema {

@@ -1,4 +1,4 @@
-package aulas.oficial;
+package aulas.model;
 
 public class Oficial {
 	private String nome;

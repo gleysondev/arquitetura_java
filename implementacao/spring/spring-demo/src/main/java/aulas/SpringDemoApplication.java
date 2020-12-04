@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import aulas.componente.Mensagem;
 import aulas.config.AppConfig;
-import aulas.oficial.Oficial;
+import aulas.model.Oficial;
 import aulas.start.Sistema;
 
 @SpringBootApplication
