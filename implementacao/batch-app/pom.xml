@@ -20,6 +20,13 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- FORA DO SERVIDOR
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1</version>
+		</dependency>
+		-->
 	</dependencies>
 
 	<build>

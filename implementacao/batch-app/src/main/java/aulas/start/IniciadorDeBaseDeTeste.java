@@ -25,16 +25,18 @@ public class IniciadorDeBaseDeTeste implements Serializable{
         Cliente renan = new Cliente("Renan");
         em.persist(renan);
         em.persist(renan.iniciaFaturaParaFechamento(hoje));
-        em.persist(renan.lanca("Saraiva",80.0,Moeda.REAL));
-        em.persist(renan.lanca("ChurrascoMil",150.4,Moeda.REAL));
+        em.persist(renan.lanca("Saraiva",80.0,Moeda.DOLAR));
+        em.persist(renan.lanca("ChurrascoMil",150.4,Moeda.DOLAR));
         em.persist(renan.lanca("DealExtreme",35.2,Moeda.DOLAR));
-
+        
+        /*
         Cliente gilberto = new Cliente("Gilberto");
         em.persist(gilberto);
         em.persist(gilberto.iniciaFaturaParaFechamento(hoje));
         em.persist(gilberto.lanca("PSN",20.0,Moeda.DOLAR));
         em.persist(gilberto.lanca("FastShop",2000.0,Moeda.REAL));
         em.persist(gilberto.lanca("eBay",77.6,Moeda.DOLAR));
+        */
     }
 
 }

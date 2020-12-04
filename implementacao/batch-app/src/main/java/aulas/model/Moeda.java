@@ -1,5 +1,5 @@
 package aulas.model;
 
 public enum Moeda {
-DOLAR,REAL
+	DOLAR,REAL
 }
