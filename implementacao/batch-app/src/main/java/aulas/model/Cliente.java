@@ -49,7 +49,7 @@ public class Cliente {
 
     public Fatura getFaturaAberta() {
         for (Fatura fatura : faturas) {
-            if(fatura.aberta())
+            //if(fatura.aberta())
                 return fatura;
         }
         return null;
