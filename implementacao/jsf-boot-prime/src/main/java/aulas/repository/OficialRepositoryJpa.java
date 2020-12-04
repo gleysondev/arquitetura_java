@@ -15,11 +15,14 @@ import aulas.model.Oficial;
 //@Stateless
 public class OficialRepositoryJpa {
 	//@PersistenceContext(unitName = "MY_PU")
-	private EntityManager entityManager ;
+	private static EntityManager entityManager ;
 	public OficialRepositoryJpa() {
 		
 	}
-	public void criarConexao() {
+	public static void main(String[] args) {
+		criarConexao();
+	}
+	public static void criarConexao() {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("MY_PU");
 		if(entityManager==null) {

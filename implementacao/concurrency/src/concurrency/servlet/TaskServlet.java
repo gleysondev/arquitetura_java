@@ -18,23 +18,22 @@ import concurrency.task.RunnableTask;
 //http://localhost:8080/concurrency/TaskServlet
 @WebServlet("/TaskServlet")
 public class TaskServlet extends HttpServlet {
- private static final long serialVersionUID = 2452936659555107992L;
+	private static final long serialVersionUID = 2452936659555107992L;
 
- private static final Logger LOG =
-  Logger.getLogger(TaskServlet.class.getSimpleName());
+	private static final Logger LOG = Logger.getLogger(TaskServlet.class.getSimpleName());
 
- @Resource(lookup = "java:jboss/ee/concurrency/executor/Aula_Task")
- private ManagedExecutorService managedExecutorService;
+	@Resource(lookup = "java:jboss/ee/concurrency/executor/Aula_Task")
+	private ManagedExecutorService managedExecutorService;
 
- protected void doGet(HttpServletRequest request,
-  HttpServletResponse response) throws ServletException, IOException {
-  for (int i = 1; i <= 10; i++) {
-   try {
-    managedExecutorService.submit(new RunnableTask(i));
-   } catch (RejectedExecutionException e) {
-    LOG.info("O envio da task " + i + " para o pool foi rejeitado..");
-   }
-  }
- }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		for (int i = 1; i <= 10; i++) {
+			try {
+				managedExecutorService.submit(new RunnableTask(i));
+			} catch (RejectedExecutionException e) {
+				LOG.info("O envio da task " + i + " para o pool foi rejeitado..");
+			}
+		}
+	}
 
 }

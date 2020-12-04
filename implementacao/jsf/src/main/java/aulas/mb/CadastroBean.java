@@ -23,7 +23,7 @@ public class CadastroBean {
 	private OficialRepositoryOld repository = new OficialRepositoryOld();
 	
 	@Inject
-	@Named(value="jpa2")
+	@Named(value="jpa")
 	private OficialRepository repositoryJpa;
 	
 	private String nome;
