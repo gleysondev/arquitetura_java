@@ -9,11 +9,8 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-import java.util.Properties;
 
 import javax.batch.api.chunk.ItemWriter;
-import javax.batch.operations.JobOperator;
-import javax.batch.runtime.BatchRuntime;
 import javax.batch.runtime.context.JobContext;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -62,6 +59,7 @@ public class GeraFaturasWriter implements ItemWriter {
              File file = new File(TMP_DIR + File.separator + "/fatura-cliente-"
                            + cliente.getId() + ".txt");
 
+             System.out.println(file.getAbsolutePath());
              // Processo sendo reaberto após alguma interrupção no processo ou
              // primeira abertura
              aberto = checkpoint != null;

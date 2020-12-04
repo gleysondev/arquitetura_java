@@ -19,8 +19,8 @@ public class AtualizaFaturasInternacionaisBatchlet implements Batchlet {
     @PersistenceContext
     private EntityManager em;
 
-    //Constante que simboliza o valor do dólar no fim do mês
-    //No mundo real recuperaríamos este valor de uma forma dinâmica
+    //Constante que simboliza o valor do dï¿½lar no fim do mï¿½s
+    //No mundo real recuperarï¿½amos este valor de uma forma dinï¿½mica
     private Double VALOR_DOLAR = 2.4;
 
     @Override @Transactional

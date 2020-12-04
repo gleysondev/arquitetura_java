@@ -30,7 +30,7 @@ public class GeraFaturasServlet extends HttpServlet {
        @Override
        public void init() throws ServletException {
              super.init();
-            // iniciador.iniciaEstadoDaBase();
+            iniciador.iniciaEstadoDaBase();
        }
 
        @Override
@@ -39,8 +39,7 @@ public class GeraFaturasServlet extends HttpServlet {
              JobOperator jobOperator = BatchRuntime.getJobOperator();
              jobOperator.start("gera-faturas", propertiesService.getProperties());
 
-             List<JobInstance> jobInstances = jobOperator.getJobInstances(
-                           "gera-faturas", 0, 100000);
+             List<JobInstance> jobInstances = jobOperator.getJobInstances("gera-faturas", 0, 100000);
              for (JobInstance jobInstance : jobInstances) {
                     List<JobExecution> jobExecutions = jobOperator
                                   .getJobExecutions(jobInstance);
