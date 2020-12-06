@@ -31,15 +31,13 @@ public class UsuarioResource {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-	@GetMapping
-	@ResponseBody
+	@GetMapping("/roles")
 	@PreAuthorize(Roles.PRE_USER)
 	private List<Role> getRoles(){
 		return roleRepository.findAll();
 	}
 	
 	@GetMapping
-	@ResponseBody
 	@PreAuthorize(Roles.PRE_ADMIN)
 	public List<Usuario> listar() {
 		return repository.findAll();

@@ -15,6 +15,7 @@ public class WebApiApplication {// WAR --> extends SpringBootServletInitializer 
 	public static void main(String[] args) {
 		SpringApplication.run(WebApiApplication.class, args);
 	}
+	//https://developer.okta.com/blog/2018/10/31/jwts-with-java
 	@Bean
 	public CommandLineRunner run(Inicializacao init) {
 		return args -> {
