@@ -1,12 +1,11 @@
-package aulas.webapi.secutiry;
+package aulas.webapi.secutiry.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class JwtCredencial {
 	private String login;
-	private Set<String>menus=new HashSet<String>();
-    private String token;
+	private String token;
     public String getToken() {
         return token;
     }
@@ -19,11 +18,6 @@ public class JwtCredencial {
     public void setLogin(String login) {
 		this.login = login;
 	}
-    public Set<String> getMenus() {
-		return menus;
-	}
-    public void setMenus(Set<String> menus) {
-		this.menus = menus;
-	}
+   
     
 }

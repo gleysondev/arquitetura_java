@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import aulas.webapi.secutiry.JwtCredencial;
 import aulas.webapi.secutiry.config.JwtTokenProvider;
+import aulas.webapi.secutiry.model.JwtCredencial;
 import aulas.webapi.secutiry.model.JwtLogin;
 
 @RestController
@@ -38,10 +38,7 @@ public class LoginResource {
         JwtCredencial credencial= new JwtCredencial();
         credencial.setLogin(login.getUsername());
         credencial.setToken(token);
-        authentication.getAuthorities().forEach(a -> {
-        	if(a.getAuthority().endsWith("MENU"))
-        		credencial.getMenus().add(a.getAuthority());
-		});
+        
         return ResponseEntity.ok(credencial);
     }
 }
