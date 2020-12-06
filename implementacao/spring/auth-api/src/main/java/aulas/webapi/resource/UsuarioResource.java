@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import aulas.webapi.model.Roles;
@@ -26,13 +25,12 @@ public class UsuarioResource {
 	
 	@Autowired
 	private UsuarioService service;
-	
 
 	@Autowired
 	private RoleRepository roleRepository;
 	
 	@GetMapping("/roles")
-	@PreAuthorize(Roles.PRE_USER)
+	//@PreAuthorize(Roles.PRE_USER)
 	private List<Role> getRoles(){
 		return roleRepository.findAll();
 	}
