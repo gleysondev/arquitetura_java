@@ -1,5 +1,7 @@
 package aulas.webapi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import aulas.webapi.model.Roles;
 import aulas.webapi.model.acesso.Role;
 import aulas.webapi.model.acesso.Usuario;
+import aulas.webapi.repository.RoleRepository;
 import aulas.webapi.repository.UsuarioRepository;
 
 @Service
@@ -14,6 +17,13 @@ public class UsuarioService {
 		
 	@Autowired
 	private UsuarioRepository userRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
+	
+	public List<Role> getRoles(){
+		return roleRepository.findAll();
+	}
 	
 	@Autowired
 	private PasswordEncoder encoder;

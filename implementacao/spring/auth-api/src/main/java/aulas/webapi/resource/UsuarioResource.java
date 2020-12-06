@@ -25,14 +25,11 @@ public class UsuarioResource {
 	
 	@Autowired
 	private UsuarioService service;
-
-	@Autowired
-	private RoleRepository roleRepository;
 	
 	@GetMapping("/roles")
-	//@PreAuthorize(Roles.PRE_USER)
-	private List<Role> getRoles(){
-		return roleRepository.findAll();
+	@PreAuthorize(Roles.PRE_USER)
+	public List<Role> getRoles(){
+		return service.getRoles();
 	}
 	
 	@GetMapping
