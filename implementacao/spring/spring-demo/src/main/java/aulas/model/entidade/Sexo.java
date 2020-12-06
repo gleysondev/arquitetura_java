@@ -5,9 +5,9 @@ public enum Sexo {
 	MASCULINO("MASCULINO"),
 	FEMININO("FEMININO"),
 	//String - JPA
-	M("MASCULINO"),
-	F("FEMININO"),;
-	
+	//M("MASCULINO"),
+	//F("FEMININO"),
+	;
 	private String descricao;
 	private Sexo(String descricao) {
 		this.descricao=descricao;
