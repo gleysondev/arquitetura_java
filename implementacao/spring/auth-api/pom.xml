@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>aulas</groupId>
-	<artifactId>auth-api-perfil</artifactId>
+	<artifactId>auth-api</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
@@ -70,7 +70,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>auth-api-perfil</finalName>
+		<finalName>auth-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
