@@ -1,5 +1,6 @@
 package aulas.model.entidade;
 
+
 public class Endereco {
 	private TipoEndereco tipo;
 	private String cep;
