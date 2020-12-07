@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>aulas</groupId>
-	<artifactId>spring-security</artifactId>
+	<artifactId>spring-security-memory</artifactId>
 	<version>1.0</version>
 	<name>spring-security</name>
 	<description>Demo project for Spring Boot</description>
