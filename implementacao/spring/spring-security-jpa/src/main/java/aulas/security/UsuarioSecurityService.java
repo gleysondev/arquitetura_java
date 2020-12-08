@@ -3,9 +3,6 @@ package aulas.security;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,9 +18,6 @@ public class UsuarioSecurityService implements UserDetailsService{
 		
 		@Autowired
 		private UsuarioRepository repository;
-		
-		@PersistenceContext
-		private EntityManager em;
 		
 		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 			Usuario user = repository.findByLogin(username);

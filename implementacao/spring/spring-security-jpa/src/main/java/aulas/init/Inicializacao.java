@@ -19,7 +19,7 @@ public class Inicializacao {
 	
 	public void init() {
 		roles();
-		admin();
+		addUsers();
 	}
 	
 	private void roles() {
@@ -33,7 +33,7 @@ public class Inicializacao {
 		roleRepository.save(role);
 		
 	}
-	private void admin() {
+	private void addUsers() {
 		
 		Usuario admin = new Usuario();
 		admin.setLogin("admin");

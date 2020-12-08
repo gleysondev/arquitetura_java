@@ -35,7 +35,7 @@ public class RegisterHandler {
 								registerModel.getPersonalInfo().getUsername())) //
 				.build());
 		
-		//transitionValue = "failure";
+		transitionValue = "failure";
 
 		return transitionValue;
 	}

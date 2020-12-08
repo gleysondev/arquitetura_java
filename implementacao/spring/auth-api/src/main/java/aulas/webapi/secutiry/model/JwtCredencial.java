@@ -6,7 +6,7 @@ import java.util.Set;
 public class JwtCredencial {
 	private String login;
 	private String token;
-    public String getToken() {
+	public String getToken() {
         return token;
     }
     public void setToken(String token) {

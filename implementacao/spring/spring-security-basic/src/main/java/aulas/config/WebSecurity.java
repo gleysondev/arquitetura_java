@@ -6,17 +6,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
-    @Override
+   @Override
     protected void configure(HttpSecurity http) throws Exception { 
         http
         .cors().and()
         .csrf().disable().authorizeRequests()
         
         .antMatchers("/home").permitAll()
-        .antMatchers("/admin").hasRole("manager")
+        .antMatchers("/admin").hasAnyRole("manager","admin")
         
         .anyRequest().authenticated()
         .and()
         .formLogin();
     }
+   
 }

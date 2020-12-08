@@ -1,4 +1,4 @@
-package aulas.webapi.secutiry.config;
+package aulas.webapi.secutiry;
 
 import javax.annotation.Resource;
 
@@ -18,6 +18,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import aulas.webapi.secutiry.config.JwtAuthenticationEntryPoint;
+import aulas.webapi.secutiry.config.JwtAuthenticationFilter;
 
 
 /*
