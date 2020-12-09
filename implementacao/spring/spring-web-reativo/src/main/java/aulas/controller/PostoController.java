@@ -1,9 +1,6 @@
 package aulas.controller;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import aulas.document.*;
+import aulas.document.Posto;
 import aulas.services.PostoService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -25,31 +22,30 @@ public class PostoController {
 	@Autowired
 	PostoService service;
 	
-	
-	@GetMapping(value="/pokedex")
-	public Flux<Posto> getPokedex() {
-		return service.findAll();
-	}
-	
-	@GetMapping(value="/pokedex/{Id}")
-	public Mono<Posto> getPokedexId(@PathVariable String Id) 
+	@GetMapping(value="/posto/{Id}")
+	public Mono<Posto> getpostoId(@PathVariable String Id) 
 	{
 		return service.findById(Id);
 	}
 	
-	@PostMapping(value="/pokedex")
-	public Mono<Posto> save (@RequestBody Posto pokedex) {
-		return service.save(pokedex);
+	@PostMapping(value="/posto")
+	public Mono<Posto> save (@RequestBody Posto posto) {
+		return service.save(posto);
 	}
 	
+	@GetMapping(value="/posto")
+	public Flux<Posto> getposto() {
+		return service.findAll();
+	}
 
-	@GetMapping(value="/pokedex/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-	public  Flux<Tuple2<Long, Posto>> getPokedexByEvents() {
+	@GetMapping(value="/posto/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public  Flux<Tuple2<Long, Posto>> getpostoByEvents() {
 		
-		Flux<Long> interval = Flux.interval(Duration.ofSeconds(2));
+		Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
 		Flux<Posto> events = service.findAll();
-		System.out.println("OLHA O EVENTS PASSANDO AQUIIIIIII");
+		System.out.println("OLHA O EVENTS PASSANDO AQUIIIIIII " + events);
 		return Flux.zip(interval, events);
+		
 	}
 
 	

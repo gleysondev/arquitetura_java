@@ -9,25 +9,25 @@ import aulas.repository.PostoRepository;
 import reactor.core.publisher.Flux;
 
 
-@Component
+//@Component
 public class LoadData implements CommandLineRunner{
 	
 	
-	private final PostoRepository pokedexRepository;
+	private final PostoRepository repository;
 
 	LoadData(PostoRepository pokedexRepository) {
 
-		this.pokedexRepository = pokedexRepository;
+		this.repository = pokedexRepository;
 	}
 
 	@Override
 	public void run(String...args) throws Exception {
 
-	pokedexRepository.deleteAll()
+	repository.deleteAll()
 				.thenMany(
 					Flux.just("Marechal do Ar", "Tenente Brigadeiro	", "Major Brigadeiro" , "Brigadeiro")
 					.map (nome -> new Posto (UUID.randomUUID().toString(), nome))
-					.flatMap(pokedexRepository::save))
+					.flatMap(repository::save))
 				
 			.subscribe(System.out::println);
 	}
