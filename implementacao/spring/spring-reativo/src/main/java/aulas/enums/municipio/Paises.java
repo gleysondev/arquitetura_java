@@ -8,7 +8,7 @@ public enum Paises implements Enumeracao {
 	//https://www.tecepe.com.br/olimpiadas/paises/b.htm
 	//ABREVIAR
 	BR(1058, "BRASIL"),
-
+	US(1059, "ESTADOS UNIDOS"),
    
 	;
     private Integer id;
