@@ -32,10 +32,5 @@ public class JsonUtils {
 		}
 		return file;
 	}
-	public File storage() {
-		File diretorio =new File("/temp/storage");
-		if(!diretorio.exists())
-			diretorio.mkdirs();
-		return diretorio;
-	}
+	
 }

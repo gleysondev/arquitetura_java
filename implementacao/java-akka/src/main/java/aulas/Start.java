@@ -3,7 +3,6 @@ package aulas;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -21,15 +20,17 @@ import aulas.covid.actor.ApuracaoDiariaActor;
 import aulas.enums.municipio.Estado;
 import aulas.enums.municipio.Estados;
 import aulas.enums.municipio.Municipio;
+import aulas.load.LoadData;
 import aulas.mensageria.MensagemEMAIL;
 import aulas.mensageria.MensagemSMS;
+import aulas.utils.FileStorage;
 import aulas.utils.JsonUtils;
 
 public class Start {
 	public static void main(String[] args) {
 		// mensageria();
 		try {
-			// gerarJsonApuracao();
+			LoadData.execute();
 			atualizarApuracaoGlobal();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -37,53 +38,6 @@ public class Start {
 		}
 		// apuracao();
 	}
-
-	static int numero(int min, int max) {
-		return (int) ((Math.random() * (max - min)) + min);
-	}
-
-	static void gerarJsonApuracao() throws Exception {
-		int casos = 0;
-		int mortes = 0;
-		int recuperados = 0;
-
-		List<ApuracaoDiaria> apuracoes;
-		LocalDate data = LocalDate.now();
-
-		JsonUtils jsonUtil = new JsonUtils();
-
-		for (int x = 0; x < 10; x++) {
-			apuracoes = new ArrayList<ApuracaoDiaria>();
-			String jsonName = "covid-apuracoes-" + data.toString() + ".json";
-			for (Estado e : Estado.values()) {
-				casos = numero(10, 100);
-				mortes = numero(1, 10);
-				recuperados = numero(1, 30);
-
-				apuracoes.add(new ApuracaoDiaria(e.getSigla(), casos, mortes, recuperados, data.toString()));
-			}
-			// convertendo em String a resposta
-			String reposta = jsonUtil.toString(apuracoes);
-			// salvando em disco o json
-			jsonUtil.toFile(apuracoes, new File(jsonUtil.storage(), jsonName));
-			data = data.plusDays(1);
-		}
-
-		System.out.println("FIM");
-
-	}
-
-	static void apuracaoDemo() {
-		// Criação de um Actor System, container Akka.
-		ActorSystem system = ActorSystem.create("COVIDApuracaoSystem");
-
-		// Criando o ator
-		Apuracao ac = new Apuracao();
-		ac.setEstado("AC");
-		ActorRef actor = system.actorOf(Props.create(ApuracaoDiariaActor.class), ac.getEstado());
-		actor.tell(ac, ActorRef.noSender());
-	}
-
 	static void atualizarApuracaoGlobal() throws Exception {
 		// Criação de um Actor System, container Akka.
 		ActorSystem system = ActorSystem.create("COVIDApuracaoSystem");
@@ -99,25 +53,21 @@ public class Start {
 		// Criandos nossos atores no System Poll
 
 		for (Estado e : Estado.values()) {
+			//esta apuração pode ser armanezada em base de dados e depois consultado trazendo os dados atuais
 			Apuracao apuracao = new Apuracao();
 			apuracao.setEstado(e.getSigla());
+			
+			
 			apuracao.setApuracoes(filtrarApuracaoEstado(e.getSigla(), loteApuracoes));
+			
 			ActorRef actor = system.actorOf(Props.create(ApuracaoDiariaActor.class), apuracao.getEstado());
 			actor.tell(apuracao, ActorRef.noSender());
 		}
 		
 		
-		/*
-		 * 
-		 * for (ApuracaoDiaria ad : loteApuracoes) {
-			ActorRef actor = system.actorFor(ad.getEstado()); // conceito de bean - ioc
-			actor.tell(actor, ActorRef.noSender());
-		}
-		 */
 
 
 	}
-	
 	static List<ApuracaoDiaria> filtrarApuracaoEstado(String uf, List<ApuracaoDiaria> loteApuracoes) {
 		
 		Predicate<ApuracaoDiaria> ufId = m -> m.getEstado().equals(uf);
@@ -134,9 +84,9 @@ public class Start {
 		JsonUtils jsonUtil = new JsonUtils();
 
 		List<ApuracaoDiaria> apuracoesGeral = new ArrayList<ApuracaoDiaria>();
-
-		for (String j : jsonUtil.storage().list()) {
-			String json = new String(Files.readAllBytes(Paths.get(jsonUtil.storage().getAbsolutePath(), j)));
+		File dir = FileStorage.storage();
+		for (String j : dir.list()) {
+			String json = new String(Files.readAllBytes(Paths.get(dir.getAbsolutePath(), j)));
 			List<ApuracaoDiaria> apuracoes = jsonUtil.getMapper().readValue(json,
 					new TypeReference<List<ApuracaoDiaria>>() {
 					});
@@ -145,6 +95,17 @@ public class Start {
 		}
 
 		return apuracoesGeral;
+	}
+	
+	static void apuracaoDemo() {
+		// Criação de um Actor System, container Akka.
+		ActorSystem system = ActorSystem.create("COVIDApuracaoSystem");
+
+		// Criando o ator
+		Apuracao ac = new Apuracao();
+		ac.setEstado("AC");
+		ActorRef actor = system.actorOf(Props.create(ApuracaoDiariaActor.class), ac.getEstado());
+		actor.tell(ac, ActorRef.noSender());
 	}
 
 	static void mensageria() {
