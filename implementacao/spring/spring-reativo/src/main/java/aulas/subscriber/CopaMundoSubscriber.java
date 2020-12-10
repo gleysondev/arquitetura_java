@@ -13,7 +13,7 @@ public class CopaMundoSubscriber extends Subscriber<Paises> {
 
 	@Override
 	public void onError(Throwable e) {
-		System.out.println("TRE - Informamos que não foi localizada a prefeittura " + e.getMessage());
+		System.out.println("Copa do Mundo Erro " + e.getMessage());
 		
 	}
 

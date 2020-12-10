@@ -11,15 +11,18 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-//@Configuration
-public class PostoRouter {
+@Configuration
+public class Router {
 	@Bean
-	public RouterFunction<ServerResponse> route(PostoHandler handler) {
+	public RouterFunction<ServerResponse> route(PostoHandler handler,UfHandler ufHandler) {
 		return RouterFunctions
 			
 			.route(GET("/posto").and(accept(MediaType.APPLICATION_JSON)), handler::findAll)
+			.andRoute(GET("/ufs").and(accept(MediaType.APPLICATION_JSON)), ufHandler::findAll)
 			.andRoute(GET("/posto/{Id}").and(accept(MediaType.APPLICATION_JSON)), handler::findById)
-			.andRoute(POST("/posto").and(accept(MediaType.APPLICATION_JSON)), handler::save);
+			.andRoute(POST("/posto").and(accept(MediaType.APPLICATION_JSON)), handler::save)
+			
+			;
 	}
 
 }

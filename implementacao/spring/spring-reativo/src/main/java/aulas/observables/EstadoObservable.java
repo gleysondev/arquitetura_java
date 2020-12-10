@@ -14,12 +14,14 @@ import rx.Observable;
 public class EstadoObservable{
 	public void from() {
 		Observable<Municipio> observable = Observable.from(Estados.CIDADES);
-		observable.subscribe(new EnviaUrnaEletronicaSubscriber());
+		observable.subscribe(new EnviaUrnaEletronicaSubscriber());	
 	}
+	
 	public void just(Paises paisCopaMundo) {
 		Observable<Paises> observable = Observable.just(paisCopaMundo);
 		observable.subscribe(new CopaMundoSubscriber());
 	}
+	
 	public void action(String email) {
 		Observable<String> observable = Observable.just(email);
 		observable.subscribe(new EnviaEmail());

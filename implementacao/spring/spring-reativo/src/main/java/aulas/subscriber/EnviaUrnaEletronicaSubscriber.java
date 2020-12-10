@@ -13,7 +13,7 @@ public class EnviaUrnaEletronicaSubscriber extends Subscriber<Municipio> {
 
 	@Override
 	public void onError(Throwable e) {
-		System.out.println("TRE - Informamos que não foi localizada a prefeittura " + e.getMessage());
+		System.out.println("TRE - Informamos que não foi localizada a prefeitura: " + e.getMessage());
 		
 	}
 
@@ -21,7 +21,7 @@ public class EnviaUrnaEletronicaSubscriber extends Subscriber<Municipio> {
 	public void onNext(Municipio e) {
 		System.out.println("Enviando urna para " + e.getNome() + "(" + e.getSigla() + ")");
 		if(e.getNome().equals("VICOSA")) {
-			throw new RuntimeException("PREFEITURA NÃO LOCALIZADA -- > " + e.getNome() + "(" + e.getSigla() + ")" );
+			//throw new RuntimeException("PREFEITURA NÃO LOCALIZADA -- > " + e.getNome() + "(" + e.getSigla() + ")" );
 		}
 		
 	}
