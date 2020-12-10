@@ -11,16 +11,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import aulas.document.Posto;
+import aulas.document.Uf;
 import aulas.services.PostoService;
+import aulas.services.UfService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 
 @RestController
-public class PostoController {
+public class MyController {
 
 	@Autowired
 	PostoService service;
+	
+	@Autowired
+	UfService ufService;
 	
 	@GetMapping(value="/posto/{Id}")
 	public Mono<Posto> getpostoId(@PathVariable String Id) 
@@ -47,7 +52,16 @@ public class PostoController {
 		return Flux.zip(interval, events);
 		
 	}
-
+	
+	@GetMapping(value="/ufs/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public  Flux<Tuple2<Long, Uf>> getUfByEvents() {
+		
+		Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
+		Flux<Uf> events = ufService.findAll();
+		System.out.println("OLHA O EVENTS PASSANDO AQUIIIIIII " + events);
+		return Flux.zip(interval, events);
+		
+	}
 	
 	
 }

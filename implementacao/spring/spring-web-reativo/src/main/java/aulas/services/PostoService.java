@@ -7,6 +7,6 @@ public interface PostoService {
 	
 	Flux<Posto> findAll();
 	Mono<Posto> findById(String Id);
-	Mono<Posto> save(Posto pokedex);
+	Mono<Posto> save(Posto posto);
 
 }

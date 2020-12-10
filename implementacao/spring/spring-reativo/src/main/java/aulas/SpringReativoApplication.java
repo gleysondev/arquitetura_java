@@ -9,7 +9,7 @@ import aulas.start.Init;
 
 @SpringBootApplication
 public class SpringReativoApplication {
-
+	//https://medium.com/better-programming/rxjava-different-ways-of-creating-observables-7ec3204f1e23
 	public static void main(String[] args) {
 		SpringApplication.run(SpringReativoApplication.class, args);
 	}

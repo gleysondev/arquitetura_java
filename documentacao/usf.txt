@@ -1,0 +1,14 @@
+data:{"t1":0,"t2":{"nome":"ACRELANDIA","id":"d3ca091a-9d0a-4f97-91d9-951f4ab95744"}}
+data:{"t1":1,"t2":{"nome":"ASSIS BRASIL","id":"014cda67-9cef-4ca9-a774-5ff932e31632"}}
+data:{"t1":2,"t2":{"nome":"CAMPO ALEGRE","id":"0c1a8660-e1c5-4e54-ad83-4d8aa5b646a2"}}
+data:{"t1":3,"t2":{"nome":"PALMEIRA DOS INDIOS","id":"2fa585c6-97cb-443c-b642-fa90e7c8ad89"}}
+data:{"t1":4,"t2":{"nome":"POCO DAS TRINCHEIRAS","id":"b57e18e1-b010-4201-bf8d-4b0165559500"}}
+data:{"t1":5,"t2":{"nome":"PORTO REAL DO COLEGIO","id":"b01c4383-333f-4726-b04b-bbc7565f3645"}}
+data:{"t1":6,"t2":{"nome":"PORTO DE PEDRAS","id":"e891eaa4-a186-492c-95eb-dbc927e480be"}}
+data:{"t1":7,"t2":{"nome":"QUEBRANGULO","id":"cd260403-e9ad-4bc9-8570-6173e1232c3f"}}
+data:{"t1":8,"t2":{"nome":"MANCIO LIMA","id":"8b78fe9e-0595-45fd-8df2-8ddf22e34ef0"}}
+data:{"t1":9,"t2":{"nome":"PORTO CALVO","id":"a8d26d75-43ae-44cd-9ff4-4d23f7b84299"}}
+data:{"t1":10,"t2":{"nome":"CAPIXABA","id":"a8b43cc2-6a10-404b-84a9-ec7b2ed10e07"}}
+data:{"t1":11,"t2":{"nome":"SAO BRAS","id":"9fc60b11-185c-4beb-945b-7b9d9e316139"}}
+data:{"t1":12,"t2":{"nome":"SAO JOSE DA LAJE","id":"555087f2-cb42-4273-a4a6-10fd695a1667"}}
+data:{"t1":13,"t2":{"nome":"SANTA LUZIA DO NORTE","id":"40ab4908-0689-4f56-9d51-a56522ba6767"}}
