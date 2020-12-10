@@ -43,8 +43,9 @@ public class Apuracao {
 	@Override
 	public String toString() {
 		return "Apuracao [estado=" + estado + ", casos=" + casos + ", mortes=" + mortes + ", recuperados=" + recuperados
-				+ ", apuracoes=" + apuracoes + "]";
+				+ "]";
 	}
+	
 	
 	
 }

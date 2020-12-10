@@ -102,18 +102,23 @@ public class Start {
 			Apuracao apuracao = new Apuracao();
 			apuracao.setEstado(e.getSigla());
 			apuracao.setApuracoes(filtrarApuracaoEstado(e.getSigla(), loteApuracoes));
-			system.actorOf(Props.create(ApuracaoDiariaActor.class), apuracao.getEstado()); // conceito de bean - ioc
+			ActorRef actor = system.actorOf(Props.create(ApuracaoDiariaActor.class), apuracao.getEstado());
+			actor.tell(apuracao, ActorRef.noSender());
 		}
-
-		for (ApuracaoDiaria ad : loteApuracoes) {
-			ActorRef actor = system.actorOf(Props.create(Apuracao.class), ad.getEstado()); // conceito de bean - ioc
+		
+		
+		/*
+		 * 
+		 * for (ApuracaoDiaria ad : loteApuracoes) {
+			ActorRef actor = system.actorFor(ad.getEstado()); // conceito de bean - ioc
 			actor.tell(actor, ActorRef.noSender());
 		}
+		 */
+
 
 	}
 	
 	static List<ApuracaoDiaria> filtrarApuracaoEstado(String uf, List<ApuracaoDiaria> loteApuracoes) {
-		System.out.println("***PREDICATE****");
 		
 		Predicate<ApuracaoDiaria> ufId = m -> m.getEstado().equals(uf);
 		
