@@ -1,9 +1,13 @@
 package aulas;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -23,6 +27,7 @@ public class Start {
 		//mensageria();
 		try {
 			gerarJsonApuracao();
+			apuracaoOficial();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,7 +57,7 @@ public class Start {
 				mortes = numero(1, 10);
 				recuperados = numero(1, 30);
 				
-				apuracoes.add(new ApuracaoDiaria(e.getSigla(), casos, mortes, recuperados));
+				apuracoes.add(new ApuracaoDiaria(e.getSigla(), casos, mortes, recuperados,data.toString()));
 			}
 			//convertendo em String a resposta
 			String reposta = jsonUtil.toString(apuracoes);
@@ -64,8 +69,26 @@ public class Start {
 		System.out.println("FIM");
 		
 	}
+	static void atualizarApuracaoGlobal() throws Exception {
+		
+	}
+	static List<ApuracaoDiaria> processarAquivosApuracao() throws Exception {
+		JsonUtils jsonUtil = new JsonUtils();
+		
+		List<ApuracaoDiaria> apuracoesGeral = new ArrayList<ApuracaoDiaria>();
+		
+		for(String j : jsonUtil.storage().list()) {
+			String json = new String(Files.readAllBytes(Paths.get(jsonUtil.storage().getAbsolutePath(),j)));
+			List<ApuracaoDiaria> apuracoes = jsonUtil.getMapper().readValue(json, new TypeReference<List<ApuracaoDiaria>>() {});
+			apuracoesGeral.addAll(apuracoes);
+			
+		}	
+		
+		return apuracoesGeral;
+	}
 	
-	static void apuracao() {
+	
+	static void apuracaoDemo() {
 		// Criação de um Actor System, container Akka.
 		ActorSystem system = ActorSystem.create("COVIDApuracaoSystem");
 

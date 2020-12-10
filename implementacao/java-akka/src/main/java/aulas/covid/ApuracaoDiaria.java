@@ -5,16 +5,20 @@ public class ApuracaoDiaria {
 	private Integer casos;
 	private Integer mortes;
 	private Integer recuperados;
-	
-	public ApuracaoDiaria(String estado, Integer casos, Integer mortes, Integer recuperados) {
+	private String data;
+	public ApuracaoDiaria(String estado, Integer casos, Integer mortes, Integer recuperados,String data) {
 		super();
 		this.estado = estado;
 		this.casos = casos;
 		this.mortes = mortes;
 		this.recuperados = recuperados;
+		this.data=data;
 	}
 	public ApuracaoDiaria() {
 		
+	}
+	public String getData() {
+		return data;
 	}
 	public String getEstado() {
 		return estado;
