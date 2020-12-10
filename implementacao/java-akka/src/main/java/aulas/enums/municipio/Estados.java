@@ -3,6 +3,7 @@ package aulas.enums.municipio;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import aulas.enums.municipio.ufs.Acre;
 import aulas.enums.municipio.ufs.Alagoas;
@@ -65,10 +66,9 @@ public class Estados {
 		CIDADES.addAll(Arrays.asList(SaoPaulo.values()));
 		CIDADES.addAll(Arrays.asList(Tocantins.values()));
 		CIDADES.addAll(Arrays.asList(Exterior.values()));
+		
 	}
-	public static void main(String[] args) {
-		System.out.println("Cidades --> " + CIDADES.size());
-	}
+	
 	public static Municipio municipio(Integer ibge){
 		for (Municipio c : CIDADES) {
 			if (c.getId().equals(ibge)) {
@@ -85,6 +85,12 @@ public class Estados {
 			}
 		}
 		return list;
+	}
+	public static List<Municipio> municipios(Integer ufIbge){
+		List<Municipio> lista = CIDADES.stream()
+		.filter(m -> m.getUf().equals(ufIbge))
+        .collect(Collectors.toList());
+		return lista;
 	}
 	
 }
