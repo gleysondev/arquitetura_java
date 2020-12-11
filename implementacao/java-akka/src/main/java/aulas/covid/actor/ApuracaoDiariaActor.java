@@ -1,11 +1,11 @@
 package aulas.covid.actor;
 
+import java.util.Date;
 import java.util.List;
 
 import akka.actor.UntypedActor;
 import aulas.covid.Apuracao;
 import aulas.covid.ApuracaoDiaria;
-import aulas.enums.municipio.Estado;
 
 //Tentar aplicar generics
 public class ApuracaoDiariaActor extends UntypedActor{
@@ -17,10 +17,10 @@ public class ApuracaoDiariaActor extends UntypedActor{
 		
 		List<ApuracaoDiaria> apuracoes = a.getApuracoes();
 		for(ApuracaoDiaria ad: apuracoes) {
-			if(a.getEstado().equals(Estado.MARANHAO.getSigla())) {
-				System.out.println(String.format("%s Casos %d - Novos Casos %d ", a.getEstado(), a.getCasos(),ad.getCasos()));
+			//if(a.getEstado().equals(Estado.MARANHAO.getSigla())) {
+			System.out.println(String.format("%s Casos %d - Novos Casos %d -- Data\\Hora: %tc", a.getEstado(), a.getCasos(),ad.getCasos(),new Date()));
 				
-			}
+			//}
 			a.apurarCasos(ad.getCasos());
 			a.apurarMortes(ad.getMortes());
 			a.apurarRecuperados(ad.getRecuperados());

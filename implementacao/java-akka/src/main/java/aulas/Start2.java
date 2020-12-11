@@ -18,27 +18,19 @@ import aulas.covid.Apuracao;
 import aulas.covid.ApuracaoDiaria;
 import aulas.covid.actor.ApuracaoDiariaActor;
 import aulas.enums.municipio.Estado;
-import aulas.enums.municipio.Estados;
-import aulas.enums.municipio.Municipio;
-import aulas.load.LoadData;
-import aulas.mensageria.MensagemEMAIL;
-import aulas.mensageria.MensagemSMS;
 import aulas.utils.FileStorage;
 import aulas.utils.JsonUtils;
 
-public class Start {
-	//https://www.redspark.io/monitorando-sua-aplicacao-java-com-visualvm/
+public class Start2 {
 	public static void main(String[] args) {
-		// mensageria();
 		try {
-			//LoadData.execute();
-			//atualizarApuracaoGlobal();
+			atualizarApuracaoGlobal();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// apuracao();
+		
 	}
+	
 	static void atualizarApuracaoGlobal() throws Exception {
 		// Criação de um Actor System, container Akka.
 		ActorSystem system = ActorSystem.create("COVIDApuracaoSystem");
@@ -47,41 +39,52 @@ public class Start {
 		// Criando o ator
 		// Aqui é tua entidade
 
-		List<ApuracaoDiaria> loteApuracoes = processarAquivosApuracao();
+		List<ApuracaoDiaria> loteApuracoes = apuracoesDiarias();
 
-		// AQUI DE FATO ESTAMOS APLICANDO - PROGRAMAÇÃO CONCORRENTE
-
-		// Criandos nossos atores no System Poll
-
+		List<Apuracao> apuracoesSereliazadas = null;
+		
+		
 		for (Estado e : Estado.values()) {
 			//esta apuração pode ser armanezada em base de dados e depois consultado trazendo os dados atuais
-			Apuracao apuracao = new Apuracao();
+			Apuracao apuracao = new Apuracao(); // Apuracoes: MA, PI, SP, AC
 			apuracao.setEstado(e.getSigla());
-			
 			
 			apuracao.setApuracoes(filtrarApuracaoEstado(e.getSigla(), loteApuracoes));
 			
+			//--> apuracoesSereliazadas.add(apuracao);
+			
+			// AQUI DE FATO ESTAMOS APLICANDO - PROGRAMAÇÃO CONCORRENTE
+			// Criandos nossos atores no System Poll
 			ActorRef actor = system.actorOf(Props.create(ApuracaoDiariaActor.class), apuracao.getEstado());
+			
 			actor.tell(apuracao, ActorRef.noSender());
 		}
 		
-		
-
+		for(Apuracao apuracao: apuracoesSereliazadas) {
+			// Criandos nossos atores no System Poll
+			ActorRef actor = system.actorOf(Props.create(ApuracaoDiariaActor.class), apuracao.getEstado());
+			
+			actor.tell(apuracao, ActorRef.noSender());
+		}
 
 	}
+	
+	static List<Apuracao> obeterApuracoesJaExistentes(){
+		//obter no reposiorio de apuracoes Serelializadas
+		return null;
+	}
+	
+	
 	static List<ApuracaoDiaria> filtrarApuracaoEstado(String uf, List<ApuracaoDiaria> loteApuracoes) {
-		
 		Predicate<ApuracaoDiaria> ufId = m -> m.getEstado().equals(uf);
-		
 		Stream<ApuracaoDiaria> stream = loteApuracoes.stream();
 		stream = stream.filter(ufId);
-		
 		List<ApuracaoDiaria>  apuracoes = stream.collect(Collectors.toList());
-		
 		return apuracoes;
 	}
 	
-	static List<ApuracaoDiaria> processarAquivosApuracao() throws Exception {
+	
+	static List<ApuracaoDiaria> apuracoesDiarias() throws Exception {
 		JsonUtils jsonUtil = new JsonUtils();
 
 		List<ApuracaoDiaria> apuracoesGeral = new ArrayList<ApuracaoDiaria>();
@@ -98,31 +101,4 @@ public class Start {
 		return apuracoesGeral;
 	}
 	
-	static void apuracaoDemo() {
-		// Criação de um Actor System, container Akka.
-		ActorSystem system = ActorSystem.create("COVIDApuracaoSystem");
-
-		// Criando o ator
-		Apuracao ac = new Apuracao();
-		ac.setEstado("AC");
-		ActorRef actor = system.actorOf(Props.create(ApuracaoDiariaActor.class), ac.getEstado());
-		actor.tell(ac, ActorRef.noSender());
-	}
-
-	static void mensageria() {
-		// Criação de um Actor System, container Akka.
-		ActorSystem system = ActorSystem.create("MensageriaSystem");
-
-		// Criando o ator
-		ActorRef email = system.actorOf(Props.create(MensagemEMAIL.class), "email");
-		ActorRef sms = system.actorOf(Props.create(MensagemSMS.class), "sms");
-
-		List<Municipio> lista = Estados.municipios(Estado.ACRE.getId());
-		for (Municipio m : lista) {
-			String msg = String.format("Caro Municipio - %s (%s) - FAVOR enviar os dados de pesquisa do Covid ",
-					m.getNome(), m.getSigla());
-			email.tell(msg, ActorRef.noSender());
-			sms.tell(msg, ActorRef.noSender());
-		}
-	}
 }
