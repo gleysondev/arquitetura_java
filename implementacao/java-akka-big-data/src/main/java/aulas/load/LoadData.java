@@ -38,7 +38,7 @@ public class LoadData {
 		int mortes = 0;
 		int recuperados = 0;
 		
-		int dias=365;
+		
 
 		List<ApuracaoDiaria> apuracoes = new ArrayList<ApuracaoDiaria>();
 		LocalDate data = LocalDate.of(2020, 1, 1);
@@ -46,15 +46,22 @@ public class LoadData {
 		JsonUtils jsonUtil = new JsonUtils();
 		String jsonName = "covid-apuracoes-municipais.json";
 		
+		int cids = 0;
+		int dias = 2;
 		for (int x = 0; x < dias; x++) {
-			
 			for (Municipio e : Estados.CIDADES) {
 				casos = numero(10, 100);
 				mortes = numero(1, 10);
 				recuperados = numero(1, 30);
 
 				apuracoes.add(new ApuracaoDiaria( data.toString(), e.getId(),e.getUf(), casos, mortes, recuperados));
+				cids++;
+				if(cids==3) {
+					cids=0;
+					break;
+				}
 			}
+			
 			System.out.println("Processando dia " + data.toString());
 			data = data.plusDays(1);
 		}

@@ -9,7 +9,9 @@ public class ApuracaoMunicipio {
 	public Integer getIbge() {
 		return ibge;
 	}
-	
+	public void setIbge(Integer ibge) {
+		this.ibge = ibge;
+	}
 	public void apurarCasos(int novosCasos) {
 		this.casos+=novosCasos;	
 	}
@@ -28,6 +30,11 @@ public class ApuracaoMunicipio {
 	}
 	public Integer getRecuperados() {
 		return recuperados;
+	}
+	@Override
+	public String toString() {
+		return "ApuracaoMunicipio [ibge=" + ibge + ", casos=" + casos + ", mortes=" + mortes + ", recuperados="
+				+ recuperados + "]";
 	}
 	
 }
