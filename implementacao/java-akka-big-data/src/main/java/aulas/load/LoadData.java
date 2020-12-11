@@ -40,14 +40,14 @@ public class LoadData {
 		
 		int dias=365;
 
-		List<ApuracaoDiaria> apuracoes;
+		List<ApuracaoDiaria> apuracoes = new ArrayList<ApuracaoDiaria>();
 		LocalDate data = LocalDate.of(2020, 1, 1);
 
 		JsonUtils jsonUtil = new JsonUtils();
 		String jsonName = "covid-apuracoes-municipais.json";
 		
 		for (int x = 0; x < dias; x++) {
-			apuracoes = new ArrayList<ApuracaoDiaria>();
+			
 			for (Municipio e : Estados.CIDADES) {
 				casos = numero(10, 100);
 				mortes = numero(1, 10);
@@ -55,14 +55,15 @@ public class LoadData {
 
 				apuracoes.add(new ApuracaoDiaria( data.toString(), e.getId(),e.getUf(), casos, mortes, recuperados));
 			}
-			// convertendo em String a resposta
-			String reposta = jsonUtil.toString(apuracoes);
-			// salvando em disco o json
-			jsonUtil.toFile(apuracoes, new File(FileStorage.storage(), jsonName));
-			data = data.plusDays(1);
 			System.out.println("Processando dia " + data.toString());
+			data = data.plusDays(1);
 		}
-
+		// convertendo em String a resposta
+		String reposta = jsonUtil.toString(apuracoes);
+		// salvando em disco o json
+		jsonUtil.toFile(apuracoes, new File(FileStorage.storage(), jsonName));
+		
+		
 		System.out.println("FIM gerarJsonApuracaoMunicipioGeral");
 
 	}
