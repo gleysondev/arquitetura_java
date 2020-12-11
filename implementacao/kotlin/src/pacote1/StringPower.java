@@ -2,8 +2,11 @@ package pacote1;
 
 public class StringPower {
     public static void main(String[] args){
+
+        final Double PI=3.1464654;
         String nome = " Gleyson Sampaio ";
         nome = nome.trim();
+
         String nomeCompleto=nome.concat(" Oliveira");
         System.out.println("Menu nome completo é: " + nomeCompleto );
         String primeiroNome = nome.substring(0,7);
@@ -69,7 +72,7 @@ public class StringPower {
         System.out.println(String.format("%50s",nome));
         System.out.println(String.format("%-50s",nome));
 
-        System.out.println(String.format("%2$s %1$s",nome.split(" ")));
+        System.out.println(String.format("%2$s, %1$s",nome.split(" ")));
     }
     static String meuSubstring(String texto,int ate){
         //eu posso ter ate tantos caracteres
