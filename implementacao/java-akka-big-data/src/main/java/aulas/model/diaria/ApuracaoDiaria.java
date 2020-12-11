@@ -1,6 +1,6 @@
-package aulas.model;
+package aulas.model.diaria;
 
-public class CidadeApuracaoDiaria {
+public class ApuracaoDiaria {
 	private String data;
 	private Integer ibge;
 	private Integer uf;
@@ -44,7 +44,7 @@ public class CidadeApuracaoDiaria {
 	public void setRecuperados(Integer recuperados) {
 		this.recuperados = recuperados;
 	}
-	public CidadeApuracaoDiaria(String data, Integer ibge, Integer uf, Integer casos, Integer mortes,
+	public ApuracaoDiaria(String data, Integer ibge, Integer uf, Integer casos, Integer mortes,
 			Integer recuperados) {
 		super();
 		this.data = data;
@@ -54,7 +54,7 @@ public class CidadeApuracaoDiaria {
 		this.mortes = mortes;
 		this.recuperados = recuperados;
 	}
-	public CidadeApuracaoDiaria() {
+	public ApuracaoDiaria() {
 		
 	}
 	
