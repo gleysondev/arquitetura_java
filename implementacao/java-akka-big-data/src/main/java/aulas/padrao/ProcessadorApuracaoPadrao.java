@@ -25,10 +25,13 @@ public class ProcessadorApuracaoPadrao {
 			df= new SimpleDateFormat("HH:mm:ss.SSS");
 			
 			List<ApuracaoDiaria> apuracoes = getApuracoesFile();
-			
+			System.out.println("Numero de apuracoes " + apuracoes.size());
 			log("INICIANDO O PROCESSO");
-			
-			
+			int x=0;
+			for(;x<apuracoes.size();x++) {
+			//	System.out.println();
+			}
+			System.out.println(x);
 			log("FIM  DO PROCESSO");
 		}catch (Exception e) {
 			e.printStackTrace();

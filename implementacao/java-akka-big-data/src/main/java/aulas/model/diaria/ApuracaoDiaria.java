@@ -57,6 +57,11 @@ public class ApuracaoDiaria {
 	public ApuracaoDiaria() {
 		
 	}
+	@Override
+	public String toString() {
+		return "ApuracaoDiaria [data=" + data + ", ibge=" + ibge + ", uf=" + uf + ", casos=" + casos + ", mortes="
+				+ mortes + ", recuperados=" + recuperados + "]";
+	}
 	
 	
 }
