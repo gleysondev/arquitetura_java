@@ -24,7 +24,7 @@ public class LoadData {
 	public static void execute() throws Exception {
 		if(!FileStorage.storage().exists() || FileStorage.storage().list().length ==0 ) {
 			//gerarJsonApuracaoMunicipioPorDia();
-			gerarJsonApuracaoMunicipioGeral();
+			gerarApuracaoMunicipioGeral();
 			
 			//JSON
 			
@@ -37,7 +37,7 @@ public class LoadData {
 		return (int) ((Math.random() * (max - min)) + min);
 	}
 	
-	static void gerarJsonApuracaoMunicipioGeral() throws Exception {
+	static void gerarApuracaoMunicipioGeral() throws Exception {
 		int casos = 0;
 		int mortes = 0;
 		int recuperados = 0;
@@ -45,7 +45,7 @@ public class LoadData {
 		List<ApuracaoDiaria> apuracoes = new ArrayList<ApuracaoDiaria>();
 		LocalDate data = LocalDate.of(2020, 1, 1);
 		
-		int cids = 0;
+		int cids = 0;//5566
 		int dias = 2;
 		for (int x = 0; x < dias; x++) {
 			for (Municipio e : Estados.CIDADES) {
